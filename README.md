@@ -22,18 +22,39 @@ Existing eval tools probe API responses. AgentEval probes the experience.
 - **Multi-dimensional** — functional, compliance, timing, visual, brand
 - **Visual reports** — HTML with screenshots at every step, shareable with stakeholders
 
+## Prerequisites
+
+AgentEval runs as a set of [Claude Code](https://claude.com/claude-code) skills that
+drive a real browser. You'll need:
+
+- **[Claude Code](https://claude.com/claude-code)** — the framework is invoked from inside it
+- **Node.js 18+** — for `playwright-cli`
+- **`playwright-cli`** and a Chromium browser:
+  ```bash
+  npm install -g @playwright/cli@latest   # the browser-automation layer
+  npx playwright install chromium         # the browser it drives
+  ```
+
+There's no package to build or compile — the "code" is the skills (Markdown) and your
+probe configs (YAML).
+
 ## Quick Start
 
 ```bash
-# 1. Configure runtime settings
-cp .env.example .env
-# Edit .env — set AGENT_EVAL_HEADLESS=false to watch the browser
+# 1. Get the framework
+git clone https://github.com/kdceleryhq/probe.git
+cd probe
 
-# 2. Probe an agent
-# Just tell the agent: "Run scenarios/example.yaml"
+# 2. Configure your target agent + runtime settings
+cp .env.example .env
+# Edit .env — set AGENT_TARGET_URL, credentials, and AGENT_EVAL_HEADLESS
+
+# 3. Launch Claude Code from this folder, then just say:
+#    "Run scenarios/example.yaml"
 ```
 
-No install step. No build. The framework runs through Claude Code with playwright-cli.
+The skills in `.claude/skills/` are auto-discovered when you run Claude Code from the
+repo root. Point `scenarios/example.yaml` at your own agent, or write a new suite.
 
 ## How It Works
 
