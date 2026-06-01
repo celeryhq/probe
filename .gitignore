@@ -1,0 +1,30 @@
+# Probe results (generated at runtime)
+eval-results/
+results/screenshots/*
+results/videos/*
+results/*.html
+!results/screenshots/.gitkeep
+!results/videos/.gitkeep
+
+# Playwright
+.playwright/
+.playwright-cli/
+test-results/
+
+# Runtime
+.env
+*.json.lock
+
+# Local Claude Code settings
+.claude/settings.local.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (if ever needed)
+node_modules/
+package-lock.json
+
+# Auth state (contains session tokens)
+auth.json
