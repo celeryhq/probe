@@ -1,5 +1,10 @@
 # AgentEval
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Runs on Claude Code](https://img.shields.io/badge/runs%20on-Claude%20Code-D97757)](https://claude.com/claude-code)
+[![Built by Simple AI Labs](https://img.shields.io/badge/built%20by-Simple%20AI%20Labs-6E56CF)](https://github.com/kdceleryhq)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
 **Not testing. Probing.**
 
 Testing asks: "does the code work?"
