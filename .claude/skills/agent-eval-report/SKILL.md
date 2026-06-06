@@ -17,7 +17,7 @@ After running all scenarios, you have:
 
 ## Process
 
-1. Read the report template from `~/.claude/skills/agent-eval-report/report-template.html`
+1. Read the report template `report-template.html` co-located in this skill's own directory (`.claude/skills/agent-eval-report/report-template.html` when running from the repo root)
 2. Calculate pass/fail/warning counts and percentages
 3. Build sidebar items grouped by Functional and Compliance
 4. Build scenario detail sections with screenshots and verify results

@@ -38,6 +38,27 @@ drive a real browser. You'll need:
 There's no package to build or compile — the "code" is the skills (Markdown) and your
 probe configs (YAML).
 
+## Compatibility
+
+AgentEval is **Claude Code-first**. The probe splits into a harness-agnostic *engine*
+(`playwright-cli` + YAML scenarios + the HTML report template — all shell and files) and
+a *Claude Code orchestration layer* (the skills in `.claude/skills/`). Whether it runs
+elsewhere comes down to two requirements:
+
+1. **A local shell + a real browser** — non-negotiable; the engine drives Chromium via
+   `playwright-cli` on your machine.
+2. **Claude-Code-style skills + subagents** — decides plug-and-play vs. a port.
+
+| Environment | Status | Notes |
+|---|---|---|
+| **Claude Code** | ✅ Supported | Coordinated, parallel, one command. Home turf. |
+| **Local Claude runtimes with skill support** (Agent SDK, etc.) | ✅ Works | Ensure skills are on the path and `playwright-cli` is installed. |
+| **Codex CLI** | ⚠️ Engine portable, orchestration needs a port | No skill system — translate the skills into `AGENTS.md`, drop parallel-scenario subagents (degrades to sequential). |
+| **Cloud-only surfaces** (web, no local shell) | ❌ Not supported | No local shell/browser, so the engine can't run. |
+
+The dividing line is **not** "Claude vs OpenAI" — it's whether the harness gives you a
+local shell with a real browser, and whether it speaks skills.
+
 ## Quick Start
 
 ```bash
