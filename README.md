@@ -118,6 +118,7 @@ agent-evals/
     agent-eval-verify/              #   Multi-dimension evaluation
     agent-eval-report/              #   HTML report generator + template
     playwright-cli/                 #   Browser automation layer
+    langfuse/                       #   Optional — query Langfuse traces to cross-debug
 ```
 
 ### For new users — 3 folders:
@@ -184,6 +185,26 @@ Dimensions are lenses — the agent evaluates based on the natural language `che
 | `timing` | Is the experience fast enough? | "Response within 30 seconds" |
 | `visual` | Do generated visuals look right? | "Image is relevant, professional, no artifacts" |
 | `brand` | Does it match the brand? | "Follows Minimal direction — clean, no decoration" |
+
+## Cross-debugging with Langfuse (optional)
+
+When the agent under probe is instrumented with [Langfuse](https://langfuse.com), the
+bundled `langfuse` skill lets the probe reach past the UI into the agent's traces — so a
+failed scenario can be debugged against the actual LLM calls, tool steps, and scores
+behind it, not just the screenshot.
+
+Set three env vars (see `.env.example`) and the skill activates automatically:
+
+```bash
+LANGFUSE_PUBLIC_KEY=pk-lf-...
+LANGFUSE_SECRET_KEY=sk-lf-...
+LANGFUSE_BASE_URL=https://cloud.langfuse.com   # or your self-hosted URL
+```
+
+Then just ask in plain language, e.g. *"pull the Langfuse trace for that failed refund
+scenario and tell me which tool call went wrong."* It runs via `npx langfuse-cli` (no
+install needed); read-only calls (`list`/`get`/schema) are pre-authorized, writes still
+prompt. Vendored from [github.com/langfuse/skills](https://github.com/langfuse/skills) (MIT).
 
 ## Runtime Settings (.env)
 
